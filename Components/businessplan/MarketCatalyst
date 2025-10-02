@@ -1,0 +1,187 @@
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { TrendingUp, AlertCircle, Users, DollarSign, Calendar } from "lucide-react";
+
+export default function MarketCatalyst() {
+  const timeline = [
+    {
+      phase: "Year 1-2 (2025-2026)",
+      focus: "60%",
+      title: "Primary: Ongoing NRI Market",
+      description: "32+ million NRIs require continuous cross-border services throughout their international residency",
+      color: "blue"
+    },
+    {
+      phase: "Year 1-2 (2025-2026)",
+      focus: "30-40%",
+      title: "Catalyst: US Returnees",
+      description: "315K-385K anticipated US-to-India returnees due to H-1B visa fee implementation",
+      color: "amber"
+    },
+    {
+      phase: "Year 2-3 (2027+)",
+      focus: "20-30%",
+      title: "Secondary: Alternative Corridors",
+      description: "400K-500K Indians relocating to Canada, GCC, Australia while maintaining India services",
+      color: "green"
+    }
+  ];
+
+  const returneeNeeds = [
+    {
+      category: "Property Purchase",
+      value: "₹50L-5Cr",
+      urgency: "High",
+      icon: "🏠"
+    },
+    {
+      category: "School Admissions",
+      value: "IB/Cambridge",
+      urgency: "Critical",
+      icon: "🎓"
+    },
+    {
+      category: "Tax Compliance",
+      value: "RNOR Status",
+      urgency: "High",
+      icon: "📋"
+    },
+    {
+      category: "Financial Planning",
+      value: "401k Rollover",
+      urgency: "Medium",
+      icon: "💰"
+    }
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="space-y-8"
+    >
+      <div>
+        <h2 className="text-4xl font-bold text-slate-900 mb-4">Market Catalyst - Why Now?</h2>
+        <p className="text-lg text-slate-600 leading-relaxed">
+          Understanding the timing advantage and structural market dynamics driving near-term momentum.
+        </p>
+      </div>
+
+      <Alert className="border-2 border-blue-300 bg-blue-50">
+        <AlertCircle className="h-5 w-5 text-blue-700" />
+        <AlertDescription className="text-blue-900 font-medium">
+          The core business thesis remains the ongoing, structural NRI services market (60% focus) independent of any single policy catalyst. Near-term acceleration from policy changes provides initial momentum and validates service coordination needs.
+        </AlertDescription>
+      </Alert>
+
+      <div className="grid lg:grid-cols-3 gap-6">
+        {timeline.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+          >
+            <Card className={`h-full border-2 ${
+              item.color === 'blue' ? 'border-blue-300 bg-blue-50' :
+              item.color === 'amber' ? 'border-amber-300 bg-amber-50' :
+              'border-green-300 bg-green-50'
+            }`}>
+              <CardHeader>
+                <div className="flex items-center justify-between mb-2">
+                  <Badge variant="secondary" className={`${
+                    item.color === 'blue' ? 'bg-blue-200 text-blue-800' :
+                    item.color === 'amber' ? 'bg-amber-200 text-amber-800' :
+                    'bg-green-200 text-green-800'
+                  }`}>
+                    {item.phase}
+                  </Badge>
+                  <Badge variant="outline" className="font-bold">
+                    {item.focus} Focus
+                  </Badge>
+                </div>
+                <CardTitle className="text-lg">{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-700 leading-relaxed">{item.description}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+
+      <Card className="border-2 border-slate-200 shadow-xl">
+        <CardHeader className="bg-gradient-to-r from-slate-50 to-slate-100">
+          <CardTitle className="text-2xl flex items-center gap-2">
+            <TrendingUp className="w-6 h-6 text-amber-600" />
+            H-1B Visa Fee Impact (September 2025)
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-8 space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm text-slate-600 font-medium">Expected Returnees</p>
+                  <p className="text-2xl font-bold text-slate-900">315K-385K</p>
+                </div>
+              </div>
+              <p className="text-slate-700 leading-relaxed">
+                Anticipated US-to-India returnees over 2-3 years due to $100,000 H-1B visa fee implementation
+              </p>
+            </div>
+
+            <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+                  <Calendar className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm text-slate-600 font-medium">Timeline</p>
+                  <p className="text-2xl font-bold text-slate-900">2-3 Years</p>
+                </div>
+              </div>
+              <p className="text-slate-700 leading-relaxed">
+                Compressed timelines requiring simultaneous coordination across multiple service categories
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-slate-900 mb-4 text-lg">Critical Service Needs for Returnees</h4>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {returneeNeeds.map((need, index) => (
+                <Card key={index} className="border border-slate-200">
+                  <CardContent className="p-4">
+                    <div className="text-3xl mb-2">{need.icon}</div>
+                    <h5 className="font-semibold text-slate-900 mb-1">{need.category}</h5>
+                    <p className="text-sm text-slate-600 mb-2">{need.value}</p>
+                    <Badge 
+                      variant={need.urgency === 'Critical' ? 'destructive' : need.urgency === 'High' ? 'default' : 'secondary'}
+                      className="text-xs"
+                    >
+                      {need.urgency} Urgency
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-slate-100 border-l-4 border-slate-600 p-6 rounded-r-xl">
+            <p className="text-slate-700 leading-relaxed font-medium">
+              <span className="font-bold text-slate-900">Strategic Timing:</span> This policy-driven catalyst provides initial customer acquisition momentum and validates urgent service coordination needs, while the core business remains focused on the structural, ongoing NRI services market serving 32+ million individuals globally.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
