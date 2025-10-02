@@ -1,0 +1,34 @@
+{
+  "name": "DocumentSection",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Section title"
+    },
+    "content": {
+      "type": "string",
+      "description": "Section content in markdown"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "executive",
+        "market",
+        "strategy",
+        "financials",
+        "operations"
+      ],
+      "description": "Section category"
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "order"
+  ]
+}
