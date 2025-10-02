@@ -1,0 +1,108 @@
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { Target, Globe, TrendingUp, Zap } from "lucide-react";
+
+export default function ExecutiveSummary() {
+  const highlights = [
+    {
+      icon: Globe,
+      title: "32+ Million NRIs",
+      description: "Global diaspora across USA, GCC, UK, Canada, Singapore, Australia",
+      color: "blue"
+    },
+    {
+      icon: Target,
+      title: "24 Service Domains",
+      description: "Organized into 7 strategic verticals with 276 integration points",
+      color: "amber"
+    },
+    {
+      icon: TrendingUp,
+      title: "Market Catalyst",
+      description: "315K-385K anticipated US returnees over 2-3 years",
+      color: "green"
+    },
+    {
+      icon: Zap,
+      title: "Connector Model",
+      description: "Pure directory approach enabling rapid scaling and regulatory simplicity",
+      color: "purple"
+    }
+  ];
+
+  const colorClasses = {
+    blue: "bg-blue-100 text-blue-700 border-blue-200",
+    amber: "bg-amber-100 text-amber-700 border-amber-200",
+    green: "bg-green-100 text-green-700 border-green-200",
+    purple: "bg-purple-100 text-purple-700 border-purple-200"
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="space-y-8"
+    >
+      <div>
+        <h2 className="text-4xl font-bold text-slate-900 mb-4">Executive Summary</h2>
+        <p className="text-lg text-slate-600 leading-relaxed">
+          The global NRI services market represents a massive, fragmented opportunity serving Non-Resident Indians across multiple corridors.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {highlights.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-2">
+                <CardContent className="p-6">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colorClasses[item.color]}`}>
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2 text-slate-900">{item.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <Card className="border-2 border-slate-200 shadow-xl">
+        <CardHeader className="bg-gradient-to-r from-slate-50 to-slate-100">
+          <CardTitle className="text-2xl">The Opportunity</CardTitle>
+        </CardHeader>
+        <CardContent className="p-8 space-y-6">
+          <div className="prose prose-slate max-w-none">
+            <p className="text-slate-700 leading-relaxed text-lg">
+              The global NRI services market represents a massive, fragmented opportunity serving 32+ million Non-Resident Indians across multiple corridors. NRIs face significant challenges navigating cross-border services across <span className="font-semibold text-slate-900">24+ distinct categories</span>—from property investment and financial planning to healthcare, education, and legal compliance.
+            </p>
+            <p className="text-slate-700 leading-relaxed text-lg">
+              Current service providers operate in isolated verticals, forcing NRIs to independently coordinate complex, interconnected needs across multiple vendors without integrated guidance or quality assurance.
+            </p>
+            <div className="bg-amber-50 border-l-4 border-amber-500 p-6 my-6">
+              <p className="font-semibold text-slate-900 text-xl mb-2">
+                nri.my Solution
+              </p>
+              <p className="text-slate-700 leading-relaxed">
+                Addresses this fragmentation through a comprehensive 24-domain portfolio organized into 7 strategic verticals, providing NRIs with a unified platform to discover, compare, and connect with verified service providers across their complete lifecycle needs.
+              </p>
+            </div>
+            <p className="text-slate-700 leading-relaxed text-lg">
+              As a <span className="font-semibold text-slate-900">connector-only directory platform</span>, nri.my maintains regulatory simplicity while building sustainable competitive advantages through cross-vertical integration, AI-powered scalability, and multi-domain network effects.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
