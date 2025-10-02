@@ -1,0 +1,270 @@
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { Target, X, Check } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+export default function CompetitiveAnalysis() {
+  const competitors = [
+    {
+      name: "99acres, MagicBricks",
+      vertical: "Real Estate Only",
+      domains: "1",
+      integration: "None",
+      nriSpecific: "Limited",
+      advantage: "Existing traffic",
+      limitation: "Single vertical, no cross-service integration"
+    },
+    {
+      name: "Groww, Zerodha",
+      vertical: "Investments Only",
+      domains: "1",
+      integration: "None",
+      nriSpecific: "Moderate",
+      advantage: "Brand recognition",
+      limitation: "Narrow focus, no lifestyle services"
+    },
+    {
+      name: "NRI-specific blogs",
+      vertical: "Content/Info",
+      domains: "Multiple topics",
+      integration: "None",
+      nriSpecific: "High",
+      advantage: "NRI expertise",
+      limitation: "No service marketplace, monetization challenges"
+    },
+    {
+      name: "nri.my",
+      vertical: "All 7 Verticals",
+      domains: "24",
+      integration: "Full",
+      nriSpecific: "Complete",
+      advantage: "Comprehensive ecosystem",
+      limitation: "Building from scratch"
+    }
+  ];
+
+  const competitiveAdvantages = [
+    {
+      factor: "Domain Portfolio",
+      nrimy: "24 specialized domains",
+      competitors: "1-2 domains typically",
+      advantage: true
+    },
+    {
+      factor: "Cross-Vertical Integration",
+      nrimy: "276 integration points",
+      competitors: "No integration",
+      advantage: true
+    },
+    {
+      factor: "NRI-Specific Focus",
+      nrimy: "100% NRI-focused",
+      competitors: "General market or limited NRI",
+      advantage: true
+    },
+    {
+      factor: "SEO Network Effect",
+      nrimy: "24-domain backlink network",
+      competitors: "Single domain authority",
+      advantage: true
+    },
+    {
+      factor: "AI Scalability",
+      nrimy: "AI-powered content & dev",
+      competitors: "Manual processes",
+      advantage: true
+    },
+    {
+      factor: "Customer Lifetime Value",
+      nrimy: "7x through cross-selling",
+      competitors: "Limited to single vertical",
+      advantage: true
+    },
+    {
+      factor: "Existing Market Share",
+      nrimy: "0% (new entrant)",
+      competitors: "Established presence",
+      advantage: false
+    },
+    {
+      factor: "Brand Recognition",
+      nrimy: "Building from scratch",
+      competitors: "Known brands",
+      advantage: false
+    }
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="space-y-8"
+    >
+      <div>
+        <h2 className="text-5xl font-bold text-slate-900 mb-4">Competitive Analysis</h2>
+        <p className="text-xl text-slate-600 leading-relaxed">
+          Differentiation through comprehensive vertical integration vs. single-vertical competitors.
+        </p>
+      </div>
+
+      {/* Competitor Comparison */}
+      <Card className="border-2 border-slate-200 shadow-xl">
+        <CardHeader>
+          <CardTitle className="text-2xl">Competitive Landscape</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-slate-50">
+                <TableHead className="font-bold">Competitor</TableHead>
+                <TableHead className="font-bold">Vertical Focus</TableHead>
+                <TableHead className="font-bold">Domains</TableHead>
+                <TableHead className="font-bold">Integration</TableHead>
+                <TableHead className="font-bold">NRI-Specific</TableHead>
+                <TableHead className="font-bold">Key Advantage</TableHead>
+                <TableHead className="font-bold">Limitation</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {competitors.map((comp, idx) => (
+                <TableRow 
+                  key={idx} 
+                  className={comp.name === "nri.my" ? "bg-blue-50 font-medium" : "hover:bg-slate-50"}
+                >
+                  <TableCell className="font-semibold">
+                    {comp.name}
+                    {comp.name === "nri.my" && (
+                      <Badge className="ml-2 bg-blue-500 text-white">Us</Badge>
+                    )}
+                  </TableCell>
+                  <TableCell>{comp.vertical}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline">{comp.domains}</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge className={comp.integration === "Full" ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-600"}>
+                      {comp.integration}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge className={
+                      comp.nriSpecific === "Complete" ? "bg-green-100 text-green-800" :
+                      comp.nriSpecific === "High" ? "bg-blue-100 text-blue-800" :
+                      comp.nriSpecific === "Moderate" ? "bg-amber-100 text-amber-800" :
+                      "bg-slate-100 text-slate-600"
+                    }>
+                      {comp.nriSpecific}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-sm text-slate-600">{comp.advantage}</TableCell>
+                  <TableCell className="text-sm text-slate-600">{comp.limitation}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+
+      {/* Advantage Matrix */}
+      <Card className="border-2 border-slate-200 shadow-xl">
+        <CardHeader>
+          <CardTitle className="text-2xl flex items-center gap-2">
+            <Target className="w-6 h-6 text-blue-600" />
+            Competitive Advantage Matrix
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {competitiveAdvantages.map((item, idx) => (
+              <div 
+                key={idx}
+                className={`grid md:grid-cols-4 gap-4 items-center p-4 rounded-lg border-2 ${
+                  item.advantage 
+                    ? "bg-green-50 border-green-200" 
+                    : "bg-red-50 border-red-200"
+                }`}
+              >
+                <div className="font-semibold text-slate-900 flex items-center gap-2">
+                  {item.advantage ? (
+                    <Check className="w-5 h-5 text-green-600" />
+                  ) : (
+                    <X className="w-5 h-5 text-red-600" />
+                  )}
+                  {item.factor}
+                </div>
+                <div className="text-sm">
+                  <p className="text-slate-600 font-medium">nri.my</p>
+                  <p className="text-slate-900">{item.nrimy}</p>
+                </div>
+                <div className="text-sm">
+                  <p className="text-slate-600 font-medium">Competitors</p>
+                  <p className="text-slate-900">{item.competitors}</p>
+                </div>
+                <div>
+                  <Badge className={item.advantage ? "bg-green-500 text-white" : "bg-red-500 text-white"}>
+                    {item.advantage ? "Advantage" : "Challenge"}
+                  </Badge>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Moat Summary */}
+      <Card className="border-2 border-blue-300 shadow-xl bg-gradient-to-br from-blue-50 to-white">
+        <CardHeader>
+          <CardTitle className="text-2xl">Sustainable Competitive Moats</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="font-bold text-slate-900 mb-3">Short-Term Advantages (Year 1-2)</h4>
+              <ul className="space-y-2 text-slate-700">
+                <li className="flex items-start gap-2">
+                  <Badge className="bg-blue-500 text-white mt-0.5">1</Badge>
+                  <span>First-mover in comprehensive NRI services integration</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Badge className="bg-blue-500 text-white mt-0.5">2</Badge>
+                  <span>24-domain SEO network effect (immediate backlink advantage)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Badge className="bg-blue-500 text-white mt-0.5">3</Badge>
+                  <span>AI-powered development velocity for rapid feature deployment</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-3">Long-Term Moats (Year 3+)</h4>
+              <ul className="space-y-2 text-slate-700">
+                <li className="flex items-start gap-2">
+                  <Badge className="bg-green-500 text-white mt-0.5">1</Badge>
+                  <span>Cross-vertical customer data network effects</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Badge className="bg-green-500 text-white mt-0.5">2</Badge>
+                  <span>Multi-domain provider lock-in through subscription bundles</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Badge className="bg-green-500 text-white mt-0.5">3</Badge>
+                  <span>Brand authority as the comprehensive NRI services platform</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
