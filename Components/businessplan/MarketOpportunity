@@ -1,0 +1,156 @@
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Globe, TrendingUp, Users } from "lucide-react";
+
+export default function MarketOpportunity() {
+  const nriData = [
+    { corridor: "GCC", population: 9.96, color: "#0ea5e9" },
+    { corridor: "USA", population: 5.4, color: "#8b5cf6" },
+    { corridor: "Canada", population: 2.88, color: "#10b981" },
+    { corridor: "UK", population: 1.86, color: "#f59e0b" },
+    { corridor: "Singapore", population: 1.0, color: "#ef4444" },
+    { corridor: "Australia", population: 0.7, color: "#ec4899" },
+  ];
+
+  const totalNRIs = nriData.reduce((sum, item) => sum + item.population, 0);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="space-y-8"
+    >
+      <div>
+        <h2 className="text-4xl font-bold text-slate-900 mb-4">Market Opportunity</h2>
+        <p className="text-lg text-slate-600 leading-relaxed">
+          A comprehensive view of the global NRI services market across key economic corridors.
+        </p>
+      </div>
+
+      <div className="grid lg:grid-cols-3 gap-6 mb-8">
+        <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-xl bg-blue-500 flex items-center justify-center">
+                <Globe className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-600 font-medium">Total NRI Population</p>
+                <p className="text-3xl font-bold text-slate-900">{totalNRIs.toFixed(2)}M+</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-white">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-xl bg-green-500 flex items-center justify-center">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-600 font-medium">Primary Corridors</p>
+                <p className="text-3xl font-bold text-slate-900">6</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-xl bg-amber-500 flex items-center justify-center">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-600 font-medium">Service Categories</p>
+                <p className="text-3xl font-bold text-slate-900">24+</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="border-2 border-slate-200 shadow-xl">
+        <CardHeader className="bg-gradient-to-r from-slate-50 to-slate-100">
+          <CardTitle className="text-2xl">NRI Population by Corridor</CardTitle>
+        </CardHeader>
+        <CardContent className="p-8">
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={nriData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <XAxis 
+                dataKey="corridor" 
+                tick={{ fill: '#475569' }}
+                tickLine={{ stroke: '#cbd5e1' }}
+              />
+              <YAxis 
+                label={{ value: 'Population (Millions)', angle: -90, position: 'insideLeft', fill: '#475569' }}
+                tick={{ fill: '#475569' }}
+                tickLine={{ stroke: '#cbd5e1' }}
+              />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: '#ffffff', 
+                  border: '2px solid #e2e8f0',
+                  borderRadius: '8px',
+                  padding: '12px'
+                }}
+                formatter={(value) => [`${value}M`, 'Population']}
+              />
+              <Bar dataKey="population" radius={[8, 8, 0, 0]}>
+                {nriData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <div className="grid lg:grid-cols-2 gap-6">
+        {[
+          {
+            title: "GCC Region (9.96M NRIs)",
+            description: "Largest absolute NRI population concentrated in UAE, Saudi Arabia, Qatar, Kuwait, Oman, and Bahrain. Oil-based economies provide high disposable incomes with strong remittance flows and property investment patterns.",
+            gradient: "from-blue-50 to-cyan-50"
+          },
+          {
+            title: "United States (5.4M NRIs)",
+            description: "Largest high-income, high-skilled NRI population. Average H-1B holder salary of $167,533 over 6-15 year tenures creates substantial savings ($200K-$1M) available for Indian investments.",
+            gradient: "from-purple-50 to-indigo-50"
+          },
+          {
+            title: "Canada (2.88M NRIs)",
+            description: "Rapidly growing NRI population through skilled immigration programs. Resource and services-based economy providing geographic diversification with immigration-friendly environment.",
+            gradient: "from-green-50 to-emerald-50"
+          },
+          {
+            title: "United Kingdom (1.86M NRIs)",
+            description: "Established diaspora with deep cultural and historical ties. Financial services hub creating demand for cross-border wealth management and property investment coordination.",
+            gradient: "from-amber-50 to-orange-50"
+          }
+        ].map((corridor, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <Card className={`border-2 border-slate-200 bg-gradient-to-br ${corridor.gradient} h-full`}>
+              <CardHeader>
+                <CardTitle className="text-xl">{corridor.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-700 leading-relaxed">{corridor.description}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
