@@ -1,0 +1,230 @@
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { DollarSign, TrendingUp, Users, Zap } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+export default function BusinessModel() {
+  const revenueChannels = [
+    { channel: "Provider Subscriptions", model: "Monthly/Annual", potential: "High", timeline: "Immediate" },
+    { channel: "Lead Generation Fees", model: "Per lead", potential: "Very High", timeline: "Month 2+" },
+    { channel: "Featured Placements", model: "Monthly premium", potential: "High", timeline: "Month 3+" },
+    { channel: "Sponsored Content", model: "Per campaign", potential: "Medium", timeline: "Month 6+" },
+    { channel: "Premium Listings", model: "Upgrade fees", potential: "High", timeline: "Month 2+" },
+    { channel: "Verified Badge Program", model: "Annual fee", potential: "Medium", timeline: "Month 6+" },
+    { channel: "Advertisement Revenue", model: "CPM/CPC", potential: "High", timeline: "Month 12+" },
+    { channel: "Data & Analytics", model: "Subscription", potential: "Medium", timeline: "Year 2+" },
+    { channel: "API Access", model: "Usage-based", potential: "Medium", timeline: "Year 2+" },
+    { channel: "Affiliate Commissions", model: "Revenue share", potential: "Medium", timeline: "Month 3+" },
+    { channel: "Event Sponsorships", model: "Per event", potential: "Low", timeline: "Year 2+" },
+    { channel: "Content Licensing", model: "Licensing fees", potential: "Low", timeline: "Year 2+" },
+    { channel: "White-Label Solutions", model: "Platform fees", potential: "High", timeline: "Year 3+" },
+    { channel: "Transaction Facilitation", model: "Commission", potential: "Very High", timeline: "Phase 2+" },
+    { channel: "Marketplace Services", model: "Service fees", potential: "Very High", timeline: "Phase 2+" }
+  ];
+
+  const pricingTiers = [
+    {
+      tier: "Basic",
+      price: "₹5,000/month",
+      features: ["Company profile listing", "Basic analytics", "Email support", "5 service listings"],
+      target: "Small providers"
+    },
+    {
+      tier: "Professional",
+      price: "₹15,000/month",
+      features: ["Featured placement", "Advanced analytics", "Priority support", "Unlimited listings", "Lead management"],
+      target: "Mid-size providers"
+    },
+    {
+      tier: "Enterprise",
+      price: "₹50,000/month",
+      features: ["Premium placement", "Custom branding", "Dedicated account manager", "API access", "Multi-domain presence"],
+      target: "Large organizations"
+    }
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="space-y-8"
+    >
+      <div>
+        <h2 className="text-5xl font-bold text-slate-900 mb-4">Business Model</h2>
+        <p className="text-xl text-slate-600 leading-relaxed">
+          Multi-channel revenue strategy with 15+ monetization pathways across the connector platform ecosystem.
+        </p>
+      </div>
+
+      {/* Model Overview */}
+      <Card className="border-2 border-slate-200 shadow-xl bg-gradient-to-br from-blue-50 to-white">
+        <CardHeader>
+          <CardTitle className="text-2xl">Connector-Only Directory Model (Phase 1)</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="font-bold text-slate-900 mb-3">Platform Positioning</h4>
+              <ul className="space-y-2 text-slate-700">
+                <li className="flex items-start gap-2">
+                  <Zap className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  Pure directory and discovery platform
+                </li>
+                <li className="flex items-start gap-2">
+                  <Zap className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  No transaction facilitation or payment processing
+                </li>
+                <li className="flex items-start gap-2">
+                  <Zap className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  Regulatory simplicity for rapid scaling
+                </li>
+                <li className="flex items-start gap-2">
+                  <Zap className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  Focus on verified provider connections
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-3">Value Proposition</h4>
+              <p className="text-slate-700 mb-4">
+                <span className="font-semibold">For NRIs:</span> Unified discovery across 24 domains with quality assurance and cross-vertical service integration
+              </p>
+              <p className="text-slate-700">
+                <span className="font-semibold">For Providers:</span> Targeted NRI customer access, lead generation, and brand visibility across premium domain portfolio
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Revenue Channels */}
+      <Card className="border-2 border-slate-200 shadow-xl">
+        <CardHeader>
+          <CardTitle className="text-2xl flex items-center gap-2">
+            <DollarSign className="w-6 h-6 text-green-600" />
+            15 Revenue Channels
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-slate-50">
+                <TableHead className="font-bold">Channel</TableHead>
+                <TableHead className="font-bold">Revenue Model</TableHead>
+                <TableHead className="font-bold">Potential</TableHead>
+                <TableHead className="font-bold">Timeline</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {revenueChannels.map((item, idx) => (
+                <TableRow key={idx} className="hover:bg-slate-50">
+                  <TableCell className="font-medium">{item.channel}</TableCell>
+                  <TableCell className="text-slate-600">{item.model}</TableCell>
+                  <TableCell>
+                    <Badge className={
+                      item.potential === "Very High" ? "bg-green-100 text-green-800 border-green-300" :
+                      item.potential === "High" ? "bg-blue-100 text-blue-800 border-blue-300" :
+                      "bg-amber-100 text-amber-800 border-amber-300"
+                    }>
+                      {item.potential}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-sm text-slate-600">{item.timeline}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+
+      {/* Pricing Tiers */}
+      <div>
+        <h3 className="text-3xl font-bold text-slate-900 mb-6">Provider Subscription Tiers</h3>
+        <div className="grid md:grid-cols-3 gap-6">
+          {pricingTiers.map((tier, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <Card className={`border-2 h-full ${
+                tier.tier === "Professional" 
+                  ? "border-blue-400 shadow-xl ring-4 ring-blue-100" 
+                  : "border-slate-200"
+              }`}>
+                <CardHeader className={tier.tier === "Professional" ? "bg-blue-50" : "bg-slate-50"}>
+                  <div className="flex items-center justify-between mb-2">
+                    <CardTitle className="text-xl">{tier.tier}</CardTitle>
+                    {tier.tier === "Professional" && (
+                      <Badge className="bg-blue-500 text-white">Popular</Badge>
+                    )}
+                  </div>
+                  <div className="text-3xl font-bold text-slate-900">{tier.price}</div>
+                  <p className="text-sm text-slate-600 mt-1">For {tier.target}</p>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <ul className="space-y-3">
+                    {tier.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="text-green-700 text-xs">✓</span>
+                        </div>
+                        <span className="text-slate-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Future State */}
+      <Card className="border-2 border-purple-300 shadow-xl bg-gradient-to-br from-purple-50 to-white">
+        <CardHeader>
+          <CardTitle className="text-2xl flex items-center gap-2">
+            <TrendingUp className="w-6 h-6 text-purple-600" />
+            Phase 2+: Selective Transaction Facilitation
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-slate-700 leading-relaxed">
+            Based on Phase 1 performance data and vertical-specific opportunities, selectively introduce transaction facilitation in high-value, low-complexity domains:
+          </p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+              <h4 className="font-bold text-slate-900 mb-2">Potential Verticals</h4>
+              <ul className="space-y-1 text-sm text-slate-700">
+                <li>• Insurance products (nri.insure)</li>
+                <li>• Mutual fund investments (nri.fund)</li>
+                <li>• Forex transactions (nri.forex)</li>
+                <li>• Education consulting (nri.college)</li>
+              </ul>
+            </div>
+            <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+              <h4 className="font-bold text-slate-900 mb-2">Additional Revenue</h4>
+              <ul className="space-y-1 text-sm text-slate-700">
+                <li>• Transaction commissions (2-5%)</li>
+                <li>• Platform service fees</li>
+                <li>• Escrow services</li>
+                <li>• Payment processing margins</li>
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
